@@ -1,0 +1,17 @@
+{% extends 'main.html' %} 
+
+{% block title %}
+    Home
+{% endblock %} 
+
+{% block css%} 
+    {% load static %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/market.css' %}" />
+{% endblock %} 
+
+{% block content %}
+    <div id="market-container">
+        <p>Market Page</p>
+    </div>
+{% endblock %}

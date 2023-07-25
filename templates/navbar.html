@@ -1,0 +1,25 @@
+{% block css %} 
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}"/>
+{% endblock %}
+
+
+<nav id="nav-bar-container">
+    
+    <div id="logo-nav-container">
+        <a href="{% url 'home' %}"><img src="../static/img/indexify-logo.png" width="50%" height="50%" alt=""></a>
+
+        <ul id="nav-bar">
+            <li><a href="{% url 'home' %}" class="rm-underline">Home</a></li>
+            <li><a href="{% url 'index' %}" class="rm-underline">Index</a></li>
+            <li><a href="{% url 'market' %}" class="rm-underline">Market</a></li>
+        </ul>
+    </div>
+
+    <div>
+        <a href="#" class="rm-underline" id="login-btn">Login</a>
+    </div>
+
+</nav>
+
+<hr id="nav-bar-line">

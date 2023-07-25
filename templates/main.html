@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{% block title %}Home{% endblock %}</title>
+		<script
+			src="https://kit.fontawesome.com/50bac121fb.js"
+			crossorigin="anonymous"
+		></script>
+		<link rel="icon" type="image/x-icon" href="../static/img/favicon-32x32.png">
+		{% block css %}
+			<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+		{% endblock %}
+	</head>
+
+	<body>
+		{% include 'navbar.html' %}
+        
+		{% block content %} 
+        {% endblock %}
+	</body>
+</html>

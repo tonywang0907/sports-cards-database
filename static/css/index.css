@@ -1,0 +1,263 @@
+:root {
+	--primary-color: rgba(255, 255, 255, 0.2);
+	--secondary-color: #fff;
+	--tertiary-color: rgba(255, 255, 255, 0.1);
+	--hover-color: #5454FB;
+}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+	font-family: Helvetica;
+}
+
+/* Index Bar Styling */
+#index-container {
+	margin: auto 170px;
+}
+
+#index-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 48px;
+	margin-bottom: 16px;
+}
+
+.index-bar-container {
+	display: flex;
+	align-items: center;
+}
+
+#index-txt {
+	color: var(--secondary-color);
+	font-size: 24px;
+	margin-right: 16px;
+}
+
+#card-count {
+	display: inline-flex;
+	color: var(--secondary-color);
+	font-size: 14px;
+	padding: 6px 12px;
+	border-radius: 48px;
+	background: rgba(255, 255, 255, 0.15);
+}
+
+#search-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: var(--primary-color);
+	border-radius: 8px 0px 0px 8px;
+	border-right: 1px solid var(--tertiary-color);
+}
+
+#search-icon {
+	color: var(--secondary-color);
+	margin-left: 20px;
+}
+
+#search-input {
+	border: none;
+	outline: none;
+	width: 328px;
+	padding: 9.5px 16px;
+	background: rgba(255, 255, 255, 0.001);
+}
+
+#search-input::placeholder,
+#search-input:not(:focus),
+#search-input:focus,
+#filter-txt,
+#filter-icon {
+	color: var(--secondary-color);
+}
+
+#filter-btn {
+	border: none;
+	outline: none;
+	display: inline-flex;
+	gap: 8px;
+	padding: 8px 16px;
+	margin-right: 24px;
+	border-radius: 0px 8px 8px 0px;
+	background: var(--primary-color);
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#filter-btn:hover {
+	background: var(--hover-color);
+}
+
+#add-btn {
+	border: none;
+	outline: none;
+	display: inline-flex;
+	gap: 8px;
+	padding: 8px 16px;
+	background: var(--secondary-color);
+	border-radius: 8px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+/* Table Styling */
+.table-header {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+#checkbox-icon {
+	color: var(--primary-color);
+	margin-right: 2px;
+}
+
+.down-arrow-icon {
+	margin-top: 5px;
+}
+
+.sort-icon {
+	color: var(--secondary-color);
+	cursor: pointer;
+}
+
+#player-data {
+	background: var(--tertiary-color);
+}
+
+#player-data:hover {
+	background: var(--hover-color);
+	border-bottom: 1px solid var(--tertiary-color);
+	box-shadow: 0px 0px 36px 0px rgba(46, 46, 255, 0.5);
+}
+
+#name-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+#name-field {
+	display: flex;
+	align-items: center;
+	margin-left: 22px;
+	gap: 10px;
+}
+
+#name-txt {
+	color:var(--secondary-color);
+	font-size: 16px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#action-btn {
+	display: flex;
+	align-items: center;
+}
+
+#action-btn i {
+	margin-right: 20px;
+}
+
+#delete-icon, #edit-icon {
+	color: var(--secondary-color);
+}
+
+#sport-field {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+  
+#sport-text {
+	color: var(--secondary-color);
+	background: rgba(255, 255, 255, 0.15);
+	font-size: 16px;
+	padding: 8px 16px;
+	border-radius: 48px;
+}
+
+#product-field,
+#variation-field {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: var(--secondary-color);
+	font-size: 16px;
+	margin-left: 20px;
+}
+
+table {
+	color: var(--secondary-color);
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table td {
+	height: 48px;
+	border: 1px solid var(--tertiary-color);
+}
+
+table th {
+	font-size: 14px;
+	text-align: left;
+	padding: 0px 24px;
+	border: 1px solid var(--tertiary-color);
+	background: var(--primary-color);
+}
+
+.rm-underline {
+	text-decoration: none;
+	color: var(--primary-color);
+}
+
+/* Paginator Styling */
+#page-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 24px 0px;
+}
+
+#curr-page-info, 
+#page-btn-container a {
+	color: var(--secondary-color);
+	font-size: 16px;
+}
+
+#page-btn-container {
+	display: flex;
+	gap: 10px;
+}
+
+.page-btns {
+	display: flex;
+	align-items: center;
+	padding: 8px 16px;
+	border-radius: 8px;
+	border: 2px solid var(--secondary-color);
+}
+
+#left-arrow-icon {
+	margin-right: 8px;
+}
+
+#right-arrow-icon {
+	margin-left: 8px;
+}
+
+/* Filter Window */
+#filter-window {
+	display: none;
+	height: 500px;
+	width: 280px;
+	position: absolute;
+	top: 216px;
+	right: 178px;
+	border-radius: 8px;
+	background: #2e2b35;
+	box-shadow: -40px 8px 32px 0px rgba(0, 0, 0, 0.52);
+}
+

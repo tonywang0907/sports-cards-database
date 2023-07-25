@@ -1,0 +1,75 @@
+{% extends 'main.html' %} 
+
+{% block title %}
+    Card Info
+{% endblock %} 
+
+{% block css%} 
+    {% load static %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/card_info.css' %}" />
+    <script src="{% static 'js/card_info.js' %}"></script>
+{% endblock %} 
+
+{% block content %}
+    <div id="card-info-container">
+        <div id="card-info">
+            <div id="card-title">
+                <p id="card-name-id">{{ card.player }} #{{ card.id }}</p>
+                <div id="toggle-btns">
+                    <!-- HTML -->
+                    <a href="{% url 'toggle_tag' card.id 'Favorite' %}" class="rm-underline">
+                        {% if not favorite_tag %}
+                            <i class="fa-regular fa-xl fa-star"></i>
+                        {% else %}
+                            <i class="fa-solid fa-xl fa-star" id="yellow-color"></i>
+                        {% endif %}
+                    </a>
+            
+                    <a href="{% url 'toggle_tag' card.id 'Watchlist' %}" class="rm-underline">
+                        {% if not watchlist_tag %}
+                            <i class="fa-solid fa-xl fa-eye"></i>
+                        {% else %}
+                            <i class="fa-solid fa-xl fa-eye-slash"></i>
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+            <hr id="card-info-line">
+            <div id="card-desc">
+                <div class="card-indiv-desc">
+                    <p class="category">Category:</p>
+                    <p class="category-val">{{ card.sport }}</p>
+                </div>
+                <div class="card-indiv-desc">
+                    <p class="category">Product:</p>
+                    <p class="category-val">{{ card.product }}</p>
+                </div>
+                <div class="card-indiv-desc">
+                    <p class="category">Variation:</p>
+                    <p class="category-val">{{ card.variation }}</p>
+                </div>                
+                <div class="card-indiv-desc">
+                    <p class="category">Quantity:</p>
+                    <p class="category-val">{{ card.quantity }}</p>
+                </div>        
+                <div class="card-indiv-desc">
+                    <p class="category">Tags:</p>
+                    <p class="category-val">{% for tag in card.tag_set.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% empty %}No tags found.{% endfor %}</p>
+                </div>        
+            </div>
+
+        </div>
+
+        <div id="card-pic">
+            <div id="card-pic-container">
+                {% if card.picture %}
+                    <img
+                    src="{{ card.picture.url }}"
+                    alt="Card Image"
+                    />
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

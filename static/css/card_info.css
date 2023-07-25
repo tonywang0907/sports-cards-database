@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+	--primary-color: rgba(255, 255, 255, 0.1);
+	--secondary-color: #fff;
+}
+
+* {
+	font-family: Helvetica;
+}
+
+#card-info-container {
+    height: 520px;
+    width: 1120px;
+    margin: 100px auto;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    background: var(--primary-color);
+    border-radius: 8px;
+}
+
+#card-info,
+#card-pic {
+    padding: 40px;
+}
+
+
+#card-pic-container img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit:  cover;
+    border-radius: 16px;
+}
+
+#card-pic-container {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 0px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+
+#card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#toggle-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#toggle-btns i {
+    margin-left: 5px;
+}
+
+.rm-underline {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+#yellow-color {
+    color: #ffff00;
+}
+
+#card-name-id {
+    padding: 0;
+    margin-bottom: 32px;
+    color: var(--secondary-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 30px;
+}
+
+#card-info-line {
+    width: 100%;
+    height: 1px;
+    border: none;
+    background-color: var(--secondary-color);
+    opacity: 0.15;
+}
+
+#card-desc {
+    margin: 40px 0px;
+}
+
+.card-indiv-desc {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+}
+
+.category {
+    color: var(--secondary-color);
+    font-size: 16px;
+    opacity: 0.5;
+}
+
+.category-val {
+    color: var(--secondary-color);
+    font-size: 16px;
+}

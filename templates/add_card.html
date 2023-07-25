@@ -1,0 +1,108 @@
+{% extends 'main.html' %} 
+
+{% block title %}
+    Add Card
+{% endblock %} 
+
+{% block css%} 
+    {% load static %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add_card.css' %}" />
+    <script src="{% static 'js/add_card.js' %}"></script>
+
+{% endblock %} 
+
+{% block content %}
+    <div id="add-card-container">
+        <!-- Pic Container -->
+        <div id="pic-container">
+            <div id="card-pic-container">
+                
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div id="form-container">
+            <form
+            action="{% url 'store_card' %}"
+            method="POST"
+            enctype="multipart/form-data"
+            >
+            {% csrf_token %}
+                <div class="grid-container">
+                    <div>
+                        <h1 class="heading">Player</h1>
+                        <input
+                            class="input"
+                            type="text"
+                            name="player"
+                            placeholder="ex: Lebron James"
+                        />
+                    </div>
+                    <div>
+                        <h1 class="heading">Variation</h1>
+                        <input
+                            class="input"
+                            type="text"
+                            name="variation"
+                            placeholder="ex: Gold Refractors"
+                        />
+                    </div>
+                </div>
+
+                <div class="grid-container">
+                    <div>
+                        <h1 class="heading">Product</h1>
+                        <input
+                            class="input"
+                            type="text"
+                            name="product"
+                            placeholder="ex: 2003 - 2004 Topps Chrome"
+                        />
+                    </div>
+                    <div>
+                        <h1 class="heading">Sport</h1>
+                        <input class="input" type="text" name="sport" placeholder="ex: NBA" />
+                    </div>
+                </div>
+
+                <div class="grid-container">
+                    <div>
+                        <h1 class="heading">Base Card</h1>
+                        <div id="switch-container">
+                            <input type="radio" id="yes" name="option" value="yes" />
+                            <label for="yes">Yes</label>
+                            <input type="radio" id="no" name="option" value="no" />
+                            <label for="no">No</label>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="heading">Tags</h1>
+                        <input
+                        class="input"
+                        type="text"
+                        name="tags"
+                        placeholder="ex: BGS Slab"
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <h1 class="heading">Import Pic</h1>
+                    <input
+                        type="file"
+                        class="input"
+                        id="import-pic"
+                        name="import-pic"
+                        accept="image/png, image/jpeg, image/jpg"
+                    />
+                </div>
+                
+                <div id="cancel-enter-btn">
+                    <a href="{% url 'index' %}" id="cancel-btn">Cancel</a>
+                    <button type="submit" id="enter-btn">Enter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

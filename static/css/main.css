@@ -1,0 +1,10 @@
+body {
+	background: #12101a;
+}
+
+body {
+    background-image: url("../img/Ellipse\ 3.png"), url("../img/Ellipse\ 2.png");
+    background-repeat: no-repeat, no-repeat;
+    background-position: top right, top right;
+}
+

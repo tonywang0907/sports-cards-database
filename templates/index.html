@@ -1,0 +1,146 @@
+{% extends 'main.html' %} 
+
+{% block title %}
+    Card Index 
+{% endblock %} 
+
+{% block css %} 
+  {% load static %} 
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
+  <script src="{% static 'js/index.js' %}"></script>
+{% endblock %} 
+
+{% block content %}
+    <div id="index-container">
+        <div id="index-bar">
+            <div class="index-bar-container">
+                <h1 id="index-txt">The Card Index</h1> 
+                <a href="{% url 'index' %}" class="rm-underline"></a>
+                <h1 id="card-count"> {{total_count}} cards</h1>
+            </div>
+
+            <div class="index-bar-container">
+                <form action="{% url 'index' %}" method="GET">
+                    <div id="search-container">
+                        <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
+                        <input
+                        type="text"
+                        name="query"
+                        id="search-input"
+                        placeholder="Search"
+                        />
+                    </div>
+                </form>
+
+                <button type="submit" id="filter-btn">
+                    <span><i class="fa-solid fa-filter" id="filter-icon"></i></span>
+                    <span id="filter-txt">Filters</span>
+                </button>
+
+                <a href="{% url 'add_card' %}">
+                    <button type="submit" id="add-btn">
+                        <span><i class="fa-regular fa-plus"></i></span>
+                        <span>Add</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <div class="table-header">
+                            <span><i class="fa-regular fa-square" id="checkbox-icon"></i></span>
+                            <span><p>Player</p></span>
+                            <a href="{% url 'index' %}?sort_field=player&sort_order={{ sort_order }}" class="sort-icon">
+                                <span><i class="fa-solid fa-angle-down down-arrow-icon"></i></span>
+                            </a>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span><p>Sport</p></span>
+                            <span><i class="fa-solid fa-angle-down down-arrow-icon"></i></span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span><p>Product</p></span>
+                            <span><i class="fa-solid fa-angle-down down-arrow-icon"></i></span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span><p>Variation</p></span>
+                            <span><i class="fa-solid fa-angle-down down-arrow-icon"></i></span>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for card in cards %}
+                    <tr id="player-data">
+                        <td>
+                            <div id="name-container">
+                                <div id="name-field">
+                                    <i class="fa-regular fa-square" id="checkbox-icon"></i>
+                                    <a href="{% url 'card_info' card.id %}" class="rm-underline"><p id="name-txt">{{card.player}}</p></a>
+                                </div>
+
+                                <div id="action-btn">
+                                    <a href="{% url 'delete_card' card.id %}" class="rm-underline">
+                                        <i class="fa-regular fa-trash-can" id="delete-icon"></i>
+                                    </a>
+                                    <a href="{% url 'edit_card' card.id %}" class="rm-underline">
+                                        <i class="fa-regular fa-pen-to-square" id="edit-icon"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="sport-field">
+                                <p id="sport-text">{{card.sport}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <p id="product-field">{{card.product}}</p>
+                        </td>
+
+                        <td>
+                            <p id="variation-field">{{card.variation}}</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div id="filter-window">
+            <p>Filters</p>
+        </div>
+
+        <div id="pagination">
+            <div id="page-container">
+                <div>
+                    <p id="curr-page-info"> Showing {{ first_card_on_pg }} to {{ last_card_on_pg }} of {{ total_count }} Results</p>
+                </div>
+                <div id="page-btn-container">
+                    {% if cards.has_previous %}
+                        <a href="?query={{ query }}&sort_field={{ sort_field }}&sort_order={{ sort_order }}&page={{ cards.previous_page_number }}" class="rm-underline page-btns">
+                            <i class="fa-solid fa-chevron-left fa-2xs" id="left-arrow-icon"></i>
+                            Previous
+                        </a>
+                    {% endif %}
+                
+                    {% if cards.has_next %}
+                        <a href="?query={{ query }}&sort_field={{ sort_field }}&sort_order={{ sort_order }}&page={{ cards.next_page_number }}" class="rm-underline page-btns">
+                            Next
+                            <i class="fa-solid fa-chevron-right fa-2xs" id="right-arrow-icon"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

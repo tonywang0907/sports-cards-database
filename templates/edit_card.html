@@ -1,0 +1,120 @@
+{% extends 'main.html' %} 
+
+{% block title %}
+    Edit Card
+{% endblock %} 
+
+{% block css%} 
+    {% load static %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add_card.css' %}" />
+{% endblock %} 
+
+{% block content %}
+    <div id="add-card-container">
+        <!-- Pic Container -->
+        <div id="pic-container">
+            {% if card.picture %}
+                <img src="{{ card.picture.url }}" width="100%" height="100%" alt="" />
+            {% endif %}
+        </div>
+
+        <!-- Form Container -->
+        <div id="form-container">
+            <form
+            action="{% url 'edit_card' card.id %}"
+            method="POST"
+            enctype="multipart/form-data"
+            >
+            {% csrf_token %}
+            <div class="grid-container">
+                <div>
+                    <h1 class="heading">Player</h1>
+                    <input
+                        class="input"
+                        type="text"
+                        name="player"
+                        value="{{card.player}}"
+                    />
+                </div>
+                <div>
+                    <h1 class="heading">Variation</h1>
+                    <input
+                        class="input"
+                        type="text"
+                        name="variation"
+                        value="{{card.variation}}"
+                    />
+                </div>
+            </div>
+
+            <div class="grid-container">
+                <div>
+                    <h1 class="heading">Product</h1>
+                    <input
+                        class="input"
+                        type="text"
+                        name="product"
+                        value="{{card.product}}"
+                    />
+                </div>
+                <div>
+                    <h1 class="heading">Sport</h1>
+                    <input
+                        class="input"
+                        type="text"
+                        name="sport"
+                        value="{{card.sport}}"
+                    />
+                </div>
+            </div>
+
+            <div class="grid-container">
+                <div>
+                    <h1 class="heading">Base Card</h1>
+                    <div id="switch-container">
+                        <input
+                        type="radio"
+                        id="yes"
+                        name="option"
+                        value="yes" {% if base_card_tag %} checked {% endif %}
+                        />
+                        <label for="yes">Yes</label>
+                        <input
+                        type="radio"
+                        id="no"
+                        name="option"
+                        value="no" {%if non_base_card_tag %} checked {% endif %}
+                        />
+                        <label for="no">No</label>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="heading">Import Pic</h1>
+                    <input
+                        type="file"
+                        class="input"
+                        name="import-pic"
+                        accept="image/png, image/jpeg, image/ipg"
+                    />
+                </div>
+            </div>
+
+            <div>
+                <h1 class="heading">Tags</h1>
+                <input
+                class="input"
+                type="text"
+                name="tags"
+                value="{% for tag in card.tag_set.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+                />
+            </div>
+
+            <div id="cancel-enter-btn">
+                <a href="{% url 'index' %}" id="cancel-btn">Cancel</a>
+                <button type="submit" id="enter-btn">Enter</button>
+            </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+	--primary-color: rgba(255, 255, 255, 0.1);
+	--secondary-color: #fff;
+}
+
+* {
+	font-family: Helvetica;
+}
+
+#add-card-container {
+	height: 520px;
+	width: 1120px;
+	margin: 100px auto;
+	display: grid;
+	grid-template-columns: 30% 70%;
+	background: var(--primary-color);
+	border-radius: 8px;
+}
+
+.heading {
+	color: var(--secondary-color);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 24px;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 40px;
+}
+
+#pic-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#pic-container img {
+	max-width: 100%; 
+	height: auto;
+	border-radius: 16px;
+}
+
+#pic-container,
+#form-container {
+	padding: 40px;
+}
+
+.input {
+	width: 330px;
+	align-items: center;
+	padding: 12px;
+	border: 1px solid var(--primary-color);
+	box-sizing: border-box;
+	border-radius: 8px;
+	background: var(--primary-color);
+}
+
+.input::placeholder,
+.input:focus,
+.input:not(:focus),
+#switch-container label {
+	color: var(--secondary-color);
+}
+
+#switch-container {
+	display: inline-block;
+	padding: 10px;
+	border: 1px solid var(--primary-color);
+	border-radius: 8px;
+	background: var(--primary-color);
+}
+
+#cancel-enter-btn {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 30px;
+}
+
+#cancel-btn {
+	text-decoration: none;
+	align-items: center;
+	padding: 8px 32px;
+	border: 2px solid var(--secondary-color);
+	border-radius: 8px;
+	gap: 8px;
+	font-size: 16px;
+	font-weight: 700;
+	color: var(--secondary-color);
+	cursor: pointer;
+}
+
+#enter-btn {
+	border: none;
+	outline: none;
+	display: inline-flex;
+	align-items: center;
+	padding: 8px 32px;
+	border-radius: 8px;
+	gap: 8px;
+	background: var(--secondary-color);
+	font-size: 16px;
+	font-weight: 700;
+	color: #212121;
+	cursor: pointer;
+}
+
+
+
+
+
+
