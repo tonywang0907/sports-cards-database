@@ -8,10 +8,17 @@
     {% load static %} 
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+    <script src="{% static 'js/home.js' %}"></script>
+
 {% endblock %} 
 
 {% block content %}
     <div id="home-container">
         <p>Home Page</p>
+        {{ total_cards }} Total <br>
+        <div id="progress-bar">
+            <div id="progress" data-progress="{{ base_card_percent }}"></div>
+        </div>
+        {{non_base_cards}}
     </div>
 {% endblock %}

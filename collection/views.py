@@ -8,7 +8,25 @@ from django.core.paginator import Paginator
 from django.core.paginator import Paginator
 
 def home(request):
-    return render(request, 'home.html')
+    cards = SportsCard.objects.all()
+    total_cards = cards.count()
+
+    base_card_tag = Tag.objects.get(name='Base Card')
+    base_cards = base_card_tag.cards.count()
+
+    non_base_cards = total_cards - base_cards
+
+    base_card_percent = (base_cards / total_cards) * 100 
+
+    context = {
+        'cards': cards,
+        'total_cards': total_cards,
+        'base_cards': base_cards,
+        'non_base_cards': non_base_cards,
+        'base_card_percent': base_card_percent,
+    }
+
+    return render(request, 'home.html', context)
 
 def index(request):
     query = request.GET.get('query', '')
@@ -17,11 +35,11 @@ def index(request):
     # Search Card   
     if query:
         cards = cards.filter(
-        Q(tagcard__tag__name__icontains=query) |
-        Q(sport__icontains=query) |
-        Q(player__icontains=query) |
-        Q(product__icontains=query) |
-        Q(variation__icontains=query)
+            Q(tagcard__tag__name__icontains=query) |
+            Q(sport__icontains=query) |
+            Q(player__icontains=query) |
+            Q(product__icontains=query) |
+            Q(variation__icontains=query)
         ).distinct()
 
     # Sort Alphabetically 
@@ -82,7 +100,7 @@ def store_card(request):
         base_card = None
         non_base_card = None
 
-        if card_type == 'yes':
+        if card_type:
             # Check if the base card already exists
             base_card = SportsCard.objects.filter(
                 sport=sport,
@@ -98,10 +116,10 @@ def store_card(request):
             else:
                 # Base card does not exist, create a new card
                 base_card = SportsCard.objects.create(
-                sport=sport,
-                player=player,
-                product=product,
-                variation=variation
+                    sport=sport,
+                    player=player,
+                    product=product,
+                    variation=variation
                 )
             # Add "Base Card" tag to the card
             base_card_tag, _ = Tag.objects.get_or_create(name="Base Card")
@@ -123,21 +141,23 @@ def store_card(request):
                 # Non-base card does not exist, create a new card
                 picture = request.FILES.get('import-pic')
                 non_base_card = SportsCard.objects.create(
-                sport=sport,
-                player=player,
-                product=product,
-                variation=variation,
-                picture=picture
+                    sport=sport,
+                    player=player,
+                    product=product,
+                    variation=variation,
+                    picture=picture
                 )
 
             # Add "Non-Base Card" tag to the card
             non_base_card_tag, _ = Tag.objects.get_or_create(name="Non-Base Card")
             tag_card, _ = TagCard.objects.get_or_create(tag=non_base_card_tag, card=non_base_card)
 
-        # Process other tags
-        for tag_name in tag_names:
-            tag, _ = Tag.objects.get_or_create(name=tag_name.strip())
-            tag_card, _ = TagCard.objects.get_or_create(tag=tag, card=base_card or non_base_card)
+        # Process tags if the tag_names list is not empty
+        if tag_names and tag_names[0]:    
+            # Process other tags
+            for tag_name in tag_names:
+                tag, _ = Tag.objects.get_or_create(name=tag_name.strip())
+                tag_card, _ = TagCard.objects.get_or_create(tag=tag, card=base_card or non_base_card)
 
         return redirect('add_card')
     return render(request, 'add_card.html')
@@ -212,28 +232,6 @@ def delete_card(request, card_id):
     
     except SportsCard.DoesNotExist:
         return redirect('index')  
-
-
-# Player Info
-def player_info(request, card_id):
-    try:
-        card = get_object_or_404(SportsCard, id=card_id)
-        tags = card.tagcard_set.all()
-
-        favorite_tag = None
-        if tags.filter(tag__name='Favorite').exists():
-            favorite_tag = Tag.objects.get(name='Favorite')
-
-
-        watchlist_tag = None
-        if tags.filter(tag__name='Watchlist').exists():
-            watchlist_tag = Tag.objects.get(name='Watchlist')
-
-        context = {'card': card, 'tags': tags, 'watchlist_tag': watchlist_tag, 'favorite_tag': favorite_tag}
-        return render(request, 'player_info.html', context)
-    
-    except SportsCard.DoesNotExist:
-        return render(request, 'card_not_found.html')
 
 def toggle_tag(request, card_id, tag_name):
     card = get_object_or_404(SportsCard, id=card_id)

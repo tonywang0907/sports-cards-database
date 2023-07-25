@@ -15,3 +15,15 @@
     color: var(--secondary-color);
     font-size: 32px;
 }
+
+#progress-bar {
+	width: 486px;
+	height: 15px;
+	border-radius: 100px;
+	background: var(--primary-color);
+	margin: auto;
+}
+
+#progress {
+	height: 100%;
+}
